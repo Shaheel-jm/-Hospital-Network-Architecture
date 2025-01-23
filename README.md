@@ -120,9 +120,7 @@ For ensuring the integrity and availability of the hospital's data, Veeam Backup
   <img src="Backup%20Screenshots/backup_conf/Step%20-%2012.png" width=30%>
   <img src="Backup%20Screenshots/backup_conf/Step%20-%2013.png" width=30%>
   <img src="Backup%20Screenshots/backup_conf/Step%20-%2014.png" width=30%>
-  <img src="Backup%20Screenshots/backup_conf/Step%20-%2015.png" width=30%>
-  <img src="Backup%20Screenshots/backup_conf/Step%20-%2016.png" width=30%>
-  <img src="Backup%20Screenshots/backup_conf/Step%20-%2017.png" width=30%>
+  <img src="Backup%20Screenshots/backup_conf/Step%20-%2017.png" width=60%>
 
 </p>
 
