@@ -48,6 +48,8 @@ Each service is running on a separate hardware instance to ensure optimal perfor
 ___
 
 ## Firewall Configuration Goals
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/PfSense_logo.png/799px-PfSense_logo.png" width=30%>
+
 1. Traffic Isolation
 
 To keep hospital network traffic separate from the wireless access point (AP) traffic, we can use VLANs to create separate networks for each. This ensures that traffic from the hospital’s internal network doesn't mix with traffic from the visitors or patients using the Wi-Fi. The pfSense firewall helps control this separation by blocking unnecessary communication between the networks. The Wi-Fi for visitors and patients is set up on its own network, keeping the hospital's systems secure and running smoothly.
@@ -79,6 +81,8 @@ For bandwidth control, we can use the pfSense firewall to manage traffic by sett
 3. Traffic Filtering
 For traffic filtering, since the database server is hosted on-premises and the application server is in the cloud, we want to ensure secure communication between the two while preventing malicious connections. To achieve this, we are using pfBlockerNG in pfSense. This tool helps block unwanted or harmful IP addresses, domains, or networks from accessing the servers, thereby preventing potential threats. It enhances the firewall's capabilities by filtering out malicious traffic, ensuring that only legitimate connections are allowed, protecting both the database and application servers from external attacks.
 
+<img src="https://c10.patreonusercontent.com/4/patreon-media/p/campaign/1320964/1d0a355ee00a477dbeb8f7db0d276fb2/eyJoIjoxMDgwLCJ3IjoxMDgwfQ%3D%3D/1.png?token-time=1738368000&token-hash=T9JIowCaLQmzVkMIGIeWoUtG5SaUx7RXXFj9d8wFHJA%3D" width=10%>
+
 #### Steps to set up _pfBlockerNG_
 - Install pfBlockerNG by Going to System ---> Package Manager ---> Available Packages and install pfBlockerNG.
 - Enable pfBlockerNG in Firewall ---> pfBlockerNG and adjust logging settings.
@@ -93,6 +97,7 @@ For traffic filtering, since the database server is hosted on-premises and the a
 ___
 
 ## Veeam Backup Configuration and Disaster Recovery Simulation
+<img src="https://logos-world.net/wp-content/uploads/2024/07/Veeam-Logo.jpg" width=30%>
 1. Veeam Backup Configuration
 For ensuring the integrity and availability of the hospital's data, Veeam Backup is used to back up critical data, including patient records and application data, to safeguard against potential data loss. By creating backup jobs in Veeam, regular snapshots of the on-premises server, which stores the database, are made. This enables us to quickly recover from any disaster scenario and ensure minimal downtime.
 
@@ -122,8 +127,24 @@ For ensuring the integrity and availability of the hospital's data, Veeam Backup
   <img src="Backup%20Screenshots/backup_conf/Step%20-%2017.png" width=60%>
 </p>
 
+2. Simulating a disaster scenario when the database files are deleted. But since all the files are backed up it is easy to reduce the downtime by just restore the files from Backup Server
+- Open the Veeam Backup & Replication Console and navigate to the Backups view.
+- Find the backup that contains the files you want to restore. And right-click the backup and select Restore guest files.
+- Select the restore point and specify a reason for the restore and browse to the file you want to restore.
+- Right-click the file and select Restore to overwrite the original file, or use Copy to to save it to a new location.
 
+<p align="center">
+  <img src="Backup%20Screenshots/restore_backup/R%20Step%20-%201.png" width=80%>
+  <img src="Backup%20Screenshots/restore_backup/R%20Step%20-%202.png" width=40%>
+  <img src="Backup%20Screenshots/restore_backup/R%20Step%20-%203.png" width=40%>
+  <img src="Backup%20Screenshots/restore_backup/R%20Step%20-%204.png" width=40%>
+  <img src="Backup%20Screenshots/restore_backup/R%20Step%20-%205.png" width=40%>
+  <img src="Backup%20Screenshots/restore_backup/R%20Step%20-%206.png" width=40%>
+  <img src="Backup%20Screenshots/restore_backup/R%20Step%20-%207.png" width=40%>
+  <img src="Backup%20Screenshots/restore_backup/R%20Step%20-%208.png" width=40%>
+  <img src="Backup%20Screenshots/restore_backup/R%20Step%20-%209.png" width=40%>
 
+</p>
 
 
 
