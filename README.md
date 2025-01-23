@@ -57,9 +57,9 @@ To keep hospital network traffic separate from the wireless access point (AP) tr
 - By leveraging Rules in the pfSense firewall, we can easily isolate traffic by selecting the respective interface, setting the action to Block, and specifying the destination as the network that should be isolated from the respective interface.
 - Since there are multiple VLAN networks in the respective infrastructure, I am grouping all internal network using `Aliases`.
 <p align="center">
-  <img src="PFsense%20Screenshots/ISOLATION/ISO%20-%201.png" width=49%>
-  <img src="PFsense%20Screenshots/ISOLATION/ISO%20-%203.png" width=98%>
-  <img src="PFsense%20Screenshots/ISOLATION/ISO%20-%202.png" width=49%>
+  <img src="PFsense%20Screenshots/ISOLATION/ISO%20-%201.png" width=80%>
+  <img src="PFsense%20Screenshots/ISOLATION/ISO%20-%203.png" width=80%>
+  <img src="PFsense%20Screenshots/ISOLATION/ISO%20-%202.png" width=80%>
 </p>
 
 2. Bandwith Control
@@ -72,9 +72,60 @@ For bandwidth control, we can use the pfSense firewall to manage traffic by sett
 
 <p align="center">
   <img src="PFsense%20Screenshots/BW%20Control/Step%20-%201.png" width=80%>
-  <img src="PFsense%20Screenshots/BW%20Control/Step%20-%202.png" width=49%>
-  <img src="PFsense%20Screenshots/BW%20Control/Step%20-%203.png" width=49%>
+  <img src="PFsense%20Screenshots/BW%20Control/Step%20-%203.png" width=80%>
   <img src="PFsense%20Screenshots/BW%20Control/Step%20-%204.png" width=80%>
   <img src="PFsense%20Screenshots/BW%20Control/Step%20-%205.png" width=80%>
 </p>
+
+3. Traffic Filtering
+For traffic filtering, since the database server is hosted on-premises and the application server is in the cloud, we want to ensure secure communication between the two while preventing malicious connections. To achieve this, we are using pfBlockerNG in pfSense. This tool helps block unwanted or harmful IP addresses, domains, or networks from accessing the servers, thereby preventing potential threats. It enhances the firewall's capabilities by filtering out malicious traffic, ensuring that only legitimate connections are allowed, protecting both the database and application servers from external attacks.
+
+#### Steps to set up _pfBlockerNG_
+- Install pfBlockerNG by Going to System ---> Package Manager ---> Available Packages and install pfBlockerNG.
+- Enable pfBlockerNG in Firewall ---> pfBlockerNG and adjust logging settings.
+- Add IP block lists or DNS block lists in the IP and DNSBL tabs. And configure custom or public threat lists to block malicious sources.
+- If needed, enable GeoIP blocking in the GeoIP tab and select countries to block or allow.
+- Go to Firewall > Rules to define custom rules that control traffic inbound for database server.
+
+<p align="center">
+  <img src="PFsense%20Screenshots/Filtering/pfngblocker.png" width=80%>
+</p>
+
 ___
+
+## Veeam Backup Configuration and Disaster Recovery Simulation
+1. Veeam Backup Configuration
+For ensuring the integrity and availability of the hospital's data, Veeam Backup is used to back up critical data, including patient records and application data, to safeguard against potential data loss. By creating backup jobs in Veeam, regular snapshots of the on-premises server, which stores the database, are made. This enables us to quickly recover from any disaster scenario and ensure minimal downtime.
+
+#### Steps to Configure Veeam Backup:
+- Install Veeam Backup & Replication on a dedicated Windows Server.
+- Add the on-premises server as a backup target in Veeam.
+- Create backup jobs for the hospital's critical data, such as the database and Active Directory, to ensure regular snapshots.
+- Schedule backup jobs to run at predefined intervals (e.g., daily, weekly) to maintain up-to-date backups.
+- Test backup integrity regularly to ensure that the backup process is functioning correctly and that data can be restored.
+
+<p align="center">
+  <img src="Backup%20Screenshots/backup_conf/Step%20-%201.png" width=90%>
+  <img src="Backup%20Screenshots/backup_conf/Step%20-%202.png" width=90%>
+  <img src="Backup%20Screenshots/backup_conf/Step%20-%203.png" width=30%>
+  <img src="Backup%20Screenshots/backup_conf/Step%20-%204.png" width=30%>
+  <img src="Backup%20Screenshots/backup_conf/Step%20-%205.png" width=30%>
+  <img src="Backup%20Screenshots/backup_conf/Step%20-%205.5.png" width=30%>
+  <img src="Backup%20Screenshots/backup_conf/Step%20-%206.png" width=30%>
+  <img src="Backup%20Screenshots/backup_conf/Step%20-%207.png" width=30%>
+  <img src="Backup%20Screenshots/backup_conf/Step%20-%208.png" width=30%>
+  <img src="Backup%20Screenshots/backup_conf/Step%20-%209.png" width=30%>
+  <img src="Backup%20Screenshots/backup_conf/Step%20-%2010.png" width=30%>
+  <img src="Backup%20Screenshots/backup_conf/Step%20-%2011.png" width=30%>
+  <img src="Backup%20Screenshots/backup_conf/Step%20-%2012.png" width=30%>
+  <img src="Backup%20Screenshots/backup_conf/Step%20-%2013.png" width=30%>
+  <img src="Backup%20Screenshots/backup_conf/Step%20-%2014.png" width=30%>
+  <img src="Backup%20Screenshots/backup_conf/Step%20-%2015.png" width=30%>
+  <img src="Backup%20Screenshots/backup_conf/Step%20-%2016.png" width=30%>
+  <img src="Backup%20Screenshots/backup_conf/Step%20-%2017.png" width=30%>
+
+</p>
+
+
+
+
