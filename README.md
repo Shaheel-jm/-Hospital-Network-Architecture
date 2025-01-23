@@ -57,8 +57,24 @@ To keep hospital network traffic separate from the wireless access point (AP) tr
 - By leveraging Rules in the pfSense firewall, we can easily isolate traffic by selecting the respective interface, setting the action to Block, and specifying the destination as the network that should be isolated from the respective interface.
 - Since there are multiple VLAN networks in the respective infrastructure, I am grouping all internal network using `Aliases`.
 <p align="center">
-  <img src="" width=49%>
-  <img src="" width=49%>
+  <img src="PFsense%20Screenshots/ISOLATION/ISO%20-%201.png" width=49%>
+  <img src="PFsense%20Screenshots/ISOLATION/ISO%20-%203.png" width=98%>
+  <img src="PFsense%20Screenshots/ISOLATION/ISO%20-%202.png" width=49%>
 </p>
 
+2. Bandwith Control
+
+For bandwidth control, we can use the pfSense firewall to manage traffic by setting specific rules that prioritize hospital network traffic over Wi-Fi traffic. By allocating dedicated bandwidth for the hospital's internal network and the visitors' Wi-Fi, we ensure the critical applications and systems receive the necessary resources. This prevents network congestion and ensures optimal performance, while keeping the traffic separate to maintain security and smooth operations.
+
+#### Steps to control Bandwidth:
+- Initla step to control bandwidth is creating `Traffic Limiter`, can be find from `Firewall ---> Traffic Shaper ---> Limiters.
+- After creating Limites, set the limiters `In/Out pipe` from firewall rules.
+
+<p align="center">
+  <img src="PFsense%20Screenshots/BW%20Control/Step%20-%201.png" width=80%>
+  <img src="PFsense%20Screenshots/BW%20Control/Step%20-%202.png" width=49%>
+  <img src="PFsense%20Screenshots/BW%20Control/Step%20-%203.png" width=49%>
+  <img src="PFsense%20Screenshots/BW%20Control/Step%20-%204.png" width=80%>
+  <img src="PFsense%20Screenshots/BW%20Control/Step%20-%205.png" width=80%>
+</p>
 ___
