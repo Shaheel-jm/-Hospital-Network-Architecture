@@ -1,4 +1,4 @@
-# Hospital Network Infrastructure Setup
+# Hospital Network Architecture
 
 This document outlines the network and system architecture for the hospital, including the deployment of key services, security measures, and hardware configuration.
 
